@@ -33,7 +33,11 @@ sub game_defineResourcesFunctions(game as object)
 			if m.staticAtlases[bitmapName] = invalid
 				bitmapConfig = m.resourcesConfig.bitmaps[bitmapName]
 				atlasConfig = m.formatAsAtlasConfig(bitmapConfig)
-				texture.regionsConfig = textureParker_getRegionsConfigFromAtlas(m.getAtlasFromFs(atlasConfig.localPath))
+				if m.texturePackerFramesFormat = "array"
+					texture.regionsConfig = textureParker_getRegionsConfigFromAtlasArray(m.getAtlasFromFs(atlasConfig.localPath))
+				else
+					texture.regionsConfig = textureParker_getRegionsConfigFromAtlasAA(m.getAtlasFromFs(atlasConfig.localPath))
+				end if
 			else
 				texture.regionsConfig = m.staticAtlases[bitmapName]
 				'print_info("Use static atlas - " + bitmapName)
