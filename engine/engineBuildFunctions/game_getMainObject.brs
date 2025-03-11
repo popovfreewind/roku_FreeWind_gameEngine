@@ -61,7 +61,7 @@ function game_getMainObject(canvas_width as integer, canvas_height as integer) a
         staticAtlases: {}
         imagesTextures: {}
         labelsTextures: {}
-        artsConfig: {}
+        resourcesConfig: {}
     }
 
     mainObject.audioplayer.SetMessagePort(mainObject.music_port)

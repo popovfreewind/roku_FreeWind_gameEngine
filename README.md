@@ -1,5 +1,5 @@
 # roku_FreeWind_gameEngine
-## version: 2.1.3
+## version: 2.2.4
 ## [changelog](./CHANGELOG.md)
 
 fork of https://github.com/Romans-I-XVI/Roku-gameEngine

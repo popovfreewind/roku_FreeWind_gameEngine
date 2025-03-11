@@ -1,5 +1,9 @@
 sub game_defineResourcesFunctions(game as object)
 
+	game.setResourcesConfig = sub(config as object)
+		m.resourcesConfig = config
+	end sub
+
 	game.loadImageTexture = function(imageObject as object)
 		bitmapName = imageObject.bitmapName
 		if m.imagesTextures[bitmapName] = invalid
@@ -16,7 +20,7 @@ sub game_defineResourcesFunctions(game as object)
 
 		if texture.bitmap = invalid
 			if m.staticBitmaps[bitmapName] = invalid
-				bitmapConfig = m.artsConfig.bitmaps[bitmapName]
+				bitmapConfig = m.resourcesConfig.bitmaps[bitmapName]
 				texture.bitmap = m.getBitmapFromFs(bitmapConfig.localPath)
 			else
 				texture.bitmap = m.staticBitmaps[bitmapName]
@@ -27,7 +31,7 @@ sub game_defineResourcesFunctions(game as object)
 		' === atlas required images start ===
 		if (isString(imageObject.regionName) or asBoolean(imageObject.isAnimation)) and texture.regionsConfig = invalid
 			if m.staticAtlases[bitmapName] = invalid
-				bitmapConfig = m.artsConfig.bitmaps[bitmapName]
+				bitmapConfig = m.resourcesConfig.bitmaps[bitmapName]
 				atlasConfig = m.formatAsAtlasConfig(bitmapConfig)
 				texture.regionsConfig = textureParker_getRegionsConfigFromAtlas(m.getAtlasFromFs(atlasConfig.localPath))
 			else
