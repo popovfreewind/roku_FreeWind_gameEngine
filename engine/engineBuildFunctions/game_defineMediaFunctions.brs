@@ -1,7 +1,7 @@
 sub game_defineMediaFunctions(game as object)
     game.playBackgroundMusic = sub(name as string)
         if not m.isSoundEnabled then return
-        m.musicPlay(m.artsConfig.music[name].localPath, true)
+        m.musicPlay(m.resourcesConfig.music[name].localPath, true)
     end sub
 
     game.musicPlay = function(path as string, loop = false as boolean) as boolean
