@@ -196,7 +196,11 @@ sub game_defineResourcesFunctions(game as object)
 
 		texture = m.labelsTextures[fontKey]
 		if texture.font = invalid
-			texture.font = m.font_registry.GetFont(labelObject.fontName, labelObject.fontSize, labelObject.italic, labelObject.bold)
+			if labelObject.fontName = "default"
+				texture.font = m.font_registry.GetDefaultFont(labelObject.fontSize, labelObject.italic, labelObject.bold)
+			else
+				texture.font = m.font_registry.GetFont(labelObject.fontName, labelObject.fontSize, labelObject.italic, labelObject.bold)
+			end if
 			'print_info("Font loaded - " + fontKey)
 		end if
 

@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [2.1.3] - 11-03-2025
+### changes
+- add default font loader
+
 ## [2.1.2] - 11-03-2025
 ### changes
 - move image render to separate files
