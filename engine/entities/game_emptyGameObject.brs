@@ -152,7 +152,7 @@ function new_emptyGameObject(game as object, object_name as string) as object
 		m.imagesAA.Delete(name)
 	end sub
 
-	newObject.addNoNameLabel = function(config as object) as dynamic
+	newObject.addRandomNameLabel = function(config as object) as dynamic
 		textName = m.name + "_" + GetRandomHexString(10)
 		return m.addLabel(textName, config)
 	end function
@@ -166,7 +166,7 @@ function new_emptyGameObject(game as object, object_name as string) as object
 		labelObject = {
 			id: m.game.getNewUniqId("label")
 			name: name
-			type: "text"
+			type: "label"
 			x: 0, y: 0, shadowX: 0, shadowY: 0
 			fontSize: 16
 			lineHeight: invalid

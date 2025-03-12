@@ -4,7 +4,7 @@ function game_getMainObject(canvas_width as integer, canvas_height as integer) a
 
     mainObject = {
         ' ****BEGIN - For Internal Use, Do Not Manually Alter****
-        version: "2.2.5"
+        version: "2.3.6"
         debugging: {
             draw_colliders: false
             draw_safe_zones: false
