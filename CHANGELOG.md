@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [2.2.5] - 11-03-2025
 ### changes
-- add support for texture parker frames array and aa format
+- add support for texture parker frames array and AA format
 - add buttonCodes
 
 ## [2.2.4] - 11-03-2025
