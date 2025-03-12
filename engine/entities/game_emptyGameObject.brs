@@ -171,7 +171,7 @@ function new_emptyGameObject(game as object, object_name as string) as object
 			fontSize: 16
 			lineHeight: invalid
 			text: ""
-			align: "center"
+			align: "left" ' left center right
 			vertAlign: "top" ' top center bottom
 			fontName: "default"
 			color: &hFFFFFF
