@@ -121,10 +121,8 @@ function CreateObject_GameTimeSpan() as object
 	return timer
 end function
 
-function textureParker_getRegionsConfigFromAtlasAA(atlas as dynamic) as object
-	if isString(atlas)
-		atlas = ParseJson(atlas)
-	else
+function textureParker_getRegionsConfigFromAtlasAA(atlas as object) as object
+	if not isAssociativeArray(atlas.frames)
 		print_error("texturePacker - invalid atlas")
 		return invalid
 	end if
@@ -139,10 +137,8 @@ function textureParker_getRegionsConfigFromAtlasAA(atlas as dynamic) as object
 	return res
 end function
 
-function textureParker_getRegionsConfigFromAtlasArray(atlas as dynamic) as object
-	if isString(atlas)
-		atlas = ParseJson(atlas)
-	else
+function textureParker_getRegionsConfigFromAtlasArray(atlas as object) as object
+	if not isArray(atlas.frames)
 		print_error("texturePacker - invalid atlas")
 		return invalid
 	end if

@@ -114,7 +114,7 @@ sub game_defineResourcesFunctions(game as object)
 	end sub
 
 	game.loadStaticAtlas = sub(name as string, path as dynamic)
-		m.staticAtlases[name] = m.getAtlasFromFs(path)
+		m.staticAtlases[name] = textureParker_getRegionsConfigFromAtlasArray(m.getAtlasFromFs(path))
 	end sub
 
 	game.unloadStaticAtlas = sub(name as string)
@@ -140,20 +140,25 @@ sub game_defineResourcesFunctions(game as object)
 		end if
 	end function
 
-	game.getAtlasFromFs = function(path as string) as string
+	game.getAtlasFromFs = function(path as string) as object
 		if m.filesystem.Exists(path)
 			path_object = CreateObject("roPath", path)
 			parts = path_object.Split()
 			if parts.extension = ".json"
 				'print_info("Atlas loaded - " + path)
-				return ReadAsciiFile(path)
+				readResult = ReadAsciiFile(path)
+				if readResult = ""
+					print_error("Atlas not loaded, file is empty")
+					return {}
+				end if
+				return ParseJson(readResult)
 			else
 				print_error("Atlas not loaded, file must be of type .json")
-				return ""
+				return {}
 			end if
 		else
 			print_error("Atlas not loaded, invalid path or object properties provided, path - " + asString(path))
-			return ""
+			return {}
 		end if
 	end function
 
