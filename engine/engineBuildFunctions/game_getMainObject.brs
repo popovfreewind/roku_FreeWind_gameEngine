@@ -16,7 +16,6 @@ function game_getMainObject(canvas_width as integer, canvas_height as integer) a
         max_sound_channels: sound.MaxSimulStreams()
         running: true
         paused: false
-        isSoundEnabled: true
         sorted_instances: []
         buttonHeld: -1
         buttonHeldTime: 0

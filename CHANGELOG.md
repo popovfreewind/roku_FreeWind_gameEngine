@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - update label type form text to label
 - Update alignment of text in empty game object to left
 - Refactor atlas loading functions to improve error handling and ensure proper data types
+- Refactor media functions to streamline music playback and remove unused sound toggle
 
 ## [2.2.5] - 11-03-2025
 ### changes
