@@ -13,6 +13,7 @@ function game_getMainObject(canvas_width as integer, canvas_height as integer) a
         }
         canvas_is_screen: false
         background_color: &h000000FF
+		current_sound_channel: 1
         max_sound_channels: sound.MaxSimulStreams()
         running: true
         paused: false

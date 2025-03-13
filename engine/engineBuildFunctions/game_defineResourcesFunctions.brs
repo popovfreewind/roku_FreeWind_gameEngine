@@ -237,25 +237,7 @@ sub game_defineResourcesFunctions(game as object)
 	end function
 
 	game.loadSound = sub(config as object)
-		index = asInteger(config.index)
-		if index > 0 and m.max_sound_channels < 2 then index = 1
-
-		pauseable = config.pauseable
-		if not isBoolean(pauseable) then pauseable = true
-
-		interruptible = config.interruptible
-		if not isBoolean(interruptible) then interruptible = true
-
-		maxVolume = config.maxVolume
-		if not isInteger(maxVolume) then maxVolume = 100
-
-		m.Sounds[config.soundName] = {
-			resource: CreateObject("roAudioResource", config.path)
-			index: index
-			pauseable: pauseable
-			interruptible: interruptible
-			maxVolume: maxVolume
-		}
+		m.Sounds[config.soundName] = CreateObject("roAudioResource", config.path)
 	end sub
 
 	game.unloadSound = sub(config)
