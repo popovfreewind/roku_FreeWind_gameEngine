@@ -168,7 +168,7 @@ sub game_defineResourcesFunctions(game as object)
 			res[key] = config[key]
 		end for
 
-		keysList = ["serverFullPath", "serverPath", "localPath", "fileName"]
+		keysList = ["serverPath", "localPath", "fileName"]
 
 		for each key in keysList
 			if isString(res[key])
@@ -236,12 +236,12 @@ sub game_defineResourcesFunctions(game as object)
 		return m.labelsTextures.default.font
 	end function
 
-	game.loadSound = sub(config as object)
-		m.Sounds[config.soundName] = CreateObject("roAudioResource", config.path)
+	game.loadSound = sub(name as string, path as string)
+		m.Sounds[name] = CreateObject("roAudioResource", path)
 	end sub
 
-	game.unloadSound = sub(config)
-		m.Sounds.delete(config.soundName)
+	game.unloadSound = sub(name as string)
+		m.Sounds.delete(name)
 	end sub
 
 end sub
