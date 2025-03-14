@@ -1,5 +1,5 @@
 sub game_defineMediaFunctions(game as object)
-    game.musicPlay = function(path as string, loop = false as boolean, startPosition = invalid as dynamic) as boolean
+    game.playMusic = function(path as string, loop = false as boolean, startPosition = invalid as dynamic) as boolean
         if m.filesystem.Exists(path)
             m.audioplayer.stop()
             m.audioplayer.ClearContent()
@@ -13,20 +13,20 @@ sub game_defineMediaFunctions(game as object)
             m.audioPlayer.play()
             return true
         else
-            print "musicPlay() - No file exists at path: " ; path
+            print "playMusic() - No file exists at path: " ; path
             return false
         end if
     end function
 
-    game.musicStop = sub()
+    game.stopMusic = sub()
         m.audioplayer.stop()
     end sub
 
-    game.musicPause = sub()
+    game.pauseMusic = sub()
         m.audioplayer.pause()
     end sub
 
-    game.musicResume = sub()
+    game.resumeMusic = sub()
         m.audioplayer.resume()
     end sub
 
