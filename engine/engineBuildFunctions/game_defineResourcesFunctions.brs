@@ -4,6 +4,10 @@ sub game_defineResourcesFunctions(game as object)
 		m.resourcesConfig = config
 	end sub
 
+	game.getResourcesConfig = function() as object
+		return m.resourcesConfig
+	end function
+
 	game.loadImageTexture = function(imageObject as object)
 		bitmapName = imageObject.bitmapName
 		if m.imagesTextures[bitmapName] = invalid
