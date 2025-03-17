@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Refactor media functions to streamline music playback and remove unused sound toggle
 - Refactor sound management functions to simplify sound playback and improve channel handling
 - standardize naming conventions for music playback and control methods
+- Add mathematical utility functions for min, max, ceil, floor, and round
 
 ## [2.2.5] - 11-03-2025
 ### changes

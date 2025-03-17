@@ -8,21 +8,31 @@ function Math_Clamp(number, min, max)
 	end if
 end function
 
+function Math_min(a as float, b as float) as float
+	if a < b then return a
+	return b
+end function
+
+function Math_max(a as float, b as float) as float
+	if a > b then return a
+	return b
+end function
+
 function Math_PI()
 	return 3.1415926535897932384626433832795
 end function
 
 function Math_Atan2(y as float, x as float)
-    if x > 0
-		angle = Atn(y/x)
+	if x > 0
+		angle = Atn(y / x)
 	else if y >= 0 and x < 0
-		angle = Atn(y/x)+3.14159265359
+		angle = Atn(y / x) + 3.14159265359
 	else if y < 0 and x < 0
-		angle = Atn(y/x)-3.14159265359
+		angle = Atn(y / x) - 3.14159265359
 	else if y > 0 and x = 0
-		angle = 3.14159265359/2
+		angle = 3.14159265359 / 2
 	else if y < 0 and x = 0
-		angle = (3.14159265359/2)*-1
+		angle = (3.14159265359 / 2) * -1
 	else
 		angle = 0
 	end if
@@ -31,11 +41,11 @@ function Math_Atan2(y as float, x as float)
 end function
 
 function Math_IsIntegerEven(number as integer) as boolean
-	return (number MOD 2 = 0)
+	return (number mod 2 = 0)
 end function
 
 function Math_IsIntegerOdd(number as integer) as boolean
-	return (number MOD 2 <> 0)
+	return (number mod 2 <> 0)
 end function
 
 function Math_DegreesToRadians(degrees as float) as float
@@ -56,20 +66,20 @@ function Math_RotateVectorAroundVector(vector1 as object, vector2 as object, rad
 	s = sin(radians)
 	c = cos(radians)
 
-    v.x -= vector2.x
-    v.y -= vector2.y
+	v.x -= vector2.x
+	v.y -= vector2.y
 
-    new_x = v.x * c - v.y * s
-    new_y = v.x * s + v.y * c
+	new_x = v.x * c - v.y * s
+	new_y = v.x * s + v.y * c
 
-    v.x = new_x + vector2.x
-    v.y = new_y + vector2.y
-    
-    return v
+	v.x = new_x + vector2.x
+	v.y = new_y + vector2.y
+
+	return v
 end function
 
 function Math_NewVector(x = 0, y = 0) as object
-	return {x: x, y: y}
+	return { x: x, y: y }
 end function
 
 function Math_NewRectangle(x as integer, y as integer, width as integer, height as integer) as object
@@ -97,7 +107,7 @@ function Math_NewRectangle(x as integer, y as integer, width as integer, height 
 	end function
 
 	rect.Center = function() as object
-		return {x: m.x + m.width / 2, y: m.y + m.height / 2}
+		return { x: m.x + m.width / 2, y: m.y + m.height / 2 }
 	end function
 
 	rect.Copy = function() as object
@@ -108,7 +118,7 @@ function Math_NewRectangle(x as integer, y as integer, width as integer, height 
 end function
 
 function Math_NewCircle(x as integer, y as integer, radius as float) as object
-	return {x: x, y: y, radius: radius}
+	return { x: x, y: y, radius: radius }
 end function
 
 function Math_TotalDistance(vector1 as object, vector2 as object) as object
@@ -122,4 +132,29 @@ function Math_GetAngle(vector1 as object, vector2 as object) as float
 	x_distance = vector1.x - vector2.x
 	y_distance = vector1.y - vector2.y
 	return Math_Atan2(y_distance, x_distance) + Math_PI()
+end function
+
+function Math_ceil(x as float) as integer
+	' Get the integer part by truncating toward zero
+	intPart = Fix(x)
+	fraction = x - intPart
+
+	' If there is no fractional part, x is already an integer
+	if fraction = 0 then return x
+
+	' For positive numbers, add 1 to the truncated value.
+	' For negatives, truncation already gives the ceiling.
+	if x > 0 then
+		return intPart + 1
+	else
+		return intPart
+	end if
+end function
+
+function Math_floor(number as float) as integer
+	return int(number)
+end function
+
+function Math_round(number as float) as integer
+	return int(number + 0.5)
 end function
