@@ -90,11 +90,11 @@ sub game_defineMainLoopFunction(game as object)
 
                 ' -------------------- Then handle the object movement--------------------
                 if m.shouldUseIntegerMovement
-                    instance.x = instance.x + cint(instance.xspeed * 60 * m.dt)
-                    instance.y = instance.y + cint(instance.yspeed * 60 * m.dt)
+                    instance.x = instance.x + cint(instance.xspeed * m.dt)
+                    instance.y = instance.y + cint(instance.yspeed * m.dt)
                 else
-                    instance.x = instance.x + instance.xspeed * 60 * m.dt
-                    instance.y = instance.y + instance.yspeed * 60 * m.dt
+                    instance.x = instance.x + instance.xspeed * m.dt
+                    instance.y = instance.y + instance.yspeed * m.dt
                 end if
 
                 ' ---------------- Give a space for any processing to happen just before collision checking occurs ------------
@@ -188,10 +188,10 @@ sub game_defineMainLoopFunction(game as object)
             m.sorted_instances.SortBy("depth")
             for i = m.sorted_instances.Count() - 1 to 0 step -1
                 instance = m.sorted_instances[i]
-                if instance = invalid or instance.id = invalid then goto end_of_draw_loop
+                if instance = invalid or instance.id = invalid or not instance.enabled then goto end_of_draw_loop
                 if instance.onDrawBegin <> invalid
                     instance.onDrawBegin(m.canvas.bitmap)
-                    if instance = invalid or instance.id = invalid then goto end_of_draw_loop
+                    if instance = invalid or instance.id = invalid or not instance.enabled then goto end_of_draw_loop
                 end if
 
                 for each objToDraw in instance.drawableObjects
@@ -224,7 +224,19 @@ sub game_defineMainLoopFunction(game as object)
             end if
 
             if m.debugging.showFps
-                text = "FPS: " + (1 / m.dt).ToStr()
+                if m.debugging.fpsAverageFrames.count() < m.debugging.maxFpsAverageFrames
+                    m.debugging.fpsAverageFrames.Push(m.dt)
+                else
+                    m.debugging.fpsAverageFrames[m.debugging.fpsCurrentFrame] = m.dt
+                    m.debugging.fpsCurrentFrame++
+                    if m.debugging.fpsCurrentFrame >= m.debugging.maxFpsAverageFrames then m.debugging.fpsCurrentFrame = 0
+                end if
+                totalFps = 0
+                for each frame in m.debugging.fpsAverageFrames
+                    totalFps = totalFps + frame
+                end for
+                averageFps = totalFps / m.debugging.fpsAverageFrames.count()
+                text = "FPS: " + int(1 / averageFps).ToStr()
                 m.screen.DrawText(text, 30, 30, &hffffffff, m.getDefaultFont())
             end if
 

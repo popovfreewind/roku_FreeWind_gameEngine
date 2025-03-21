@@ -10,6 +10,11 @@ All notable changes to this project will be documented in this file.
 - Refactor sound management functions to simplify sound playback and improve channel handling
 - standardize naming conventions for music playback and control methods
 - Add mathematical utility functions for min, max, ceil, floor, and round
+- Refactor game_defineMainLoopFunction to simplify movement calculations by removing multiplication by 60
+- Add Math_NewVector function with methods for vector manipulation and operations
+- Enhance game_defineMainLoopFunction to skip disabled instances during drawing
+- Update region sorting in game_defineResourcesFunctions to use index and assign index to texture items in utils
+- Add FPS averaging functionality to game_defineMainLoopFunction and initialize FPS settings in game_getMainObject
 
 ## [2.2.5] - 11-03-2025
 ### changes

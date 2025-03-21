@@ -56,10 +56,12 @@ sub game_defineResourcesFunctions(game as object)
 		else if asBoolean(imageObject.isAnimation) ' means all regions off current bitmap atlas belongs to one animation
 			regionNames = []
 			for each regionName in texture.regionsConfig
-				regionNames.push({ name: regionName, nameForSort: asInteger(regionName) })
+				regionConfig = texture.regionsConfig[regionName]
+				index = ifElse(isInteger(regionConfig.index), regionConfig.index, asInteger(regionName))
+				regionNames.push({ name: regionName, index: index })
 			end for
 
-			regionNames.sortBy("nameForSort")
+			regionNames.sortBy("index")
 
 			currentRegions.regions = []
 			currentRegions.spriteSourceSizes = []

@@ -146,6 +146,7 @@ function textureParker_getRegionsConfigFromAtlasArray(atlas as object) as object
 	res = {}
 	for i = 0 to atlas.frames.count() - 1
 		item = atlas.frames[i]
+		item.index = i
 		key = item.filename
 		regionName = key.split(".")[0]
 		res[regionName] = item

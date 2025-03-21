@@ -10,6 +10,9 @@ function game_getMainObject(canvas_width as integer, canvas_height as integer) a
             draw_safe_zones: false
             limit_frame_rate: 0
             showFps: false
+            fpsAverageFrames: []
+            maxFpsAverageFrames: 30
+            fpsCurrentFrame: 0
         }
         canvas_is_screen: false
         background_color: &h000000FF

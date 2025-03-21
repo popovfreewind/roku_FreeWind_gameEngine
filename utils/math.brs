@@ -78,8 +78,107 @@ function Math_RotateVectorAroundVector(vector1 as object, vector2 as object, rad
 	return v
 end function
 
-function Math_NewVector(x = 0, y = 0) as object
-	return { x: x, y: y }
+function Math_NewVector(x = 0, y = 0)
+	return {
+		x: x, y: y
+
+		set: function(other)
+			m.x = other.getX()
+			m.y = other.getY()
+			return m
+		end function
+
+		setX: sub(x) : m.x = x : end sub
+
+		setY: sub(y) : m.y = y : end sub
+
+		moveX: sub(x) : m.x += x : end sub
+
+		moveY: sub(y) : m.y += y : end sub
+
+		getX: function()
+			return m.x
+		end function
+
+		getY: function()
+			return m.y
+		end function
+
+		length: function()
+			return Sqr(m.x ^ 2 + m.y ^ 2)
+		end function
+
+		normalize: function()
+			length = m.length()
+			if length > 0
+				return Math_NewVector(m.x / length, m.y / length)
+			else
+				return Math_NewVector()
+			end if
+		end function
+
+		normalizeThis: function()
+			length = m.length()
+			if length > 0
+				m.x = m.x / length : m.y = m.y / length
+				return m
+			else
+				m.x = 0 : m.y = 0
+				return m
+			end if
+		end function
+
+		dot: function(other)
+			return m.x * other.x + m.y * other.y
+		end function
+
+		multiplyScalar: function(scalar)
+			return Math_NewVector(m.x * scalar, m.y * scalar)
+		end function
+
+		multiplyScalarBy: function(scalar)
+			m.x = m.x * scalar : m.y = m.y * scalar
+			return m
+		end function
+
+		add: function(other)
+			return Math_NewVector(m.x + other.x, m.y + other.y)
+		end function
+
+		addBy: function(other)
+			m.x = m.x + other.x : m.y = m.y + other.y
+			return m
+		end function
+
+		subtract: function(other)
+			return Math_NewVector(m.x - other.x, m.y - other.y)
+		end function
+
+		subtractBy: function(other)
+			m.x = m.x - other.x : m.y = m.y - other.y
+			return m
+		end function
+
+		rotate: function(angle)
+			cosTheta = Cos(angle)
+			sinTheta = Sin(angle)
+			return Math_NewVector(m.x * cosTheta - m.y * sinTheta, m.x * sinTheta + m.y * cosTheta)
+		end function
+
+		rotateBy: function(angle)
+			cosTheta = Cos(angle)
+			sinTheta = Sin(angle)
+			newX = m.x * cosTheta - m.y * sinTheta
+			newY = m.x * sinTheta + m.y * cosTheta
+			m.x = newX
+			m.y = newY
+			return m
+		end function
+
+		clone: function()
+			return Math_NewVector(m.x, m.y)
+		end function
+	}
 end function
 
 function Math_NewRectangle(x as integer, y as integer, width as integer, height as integer) as object
