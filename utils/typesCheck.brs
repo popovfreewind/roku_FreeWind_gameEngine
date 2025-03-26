@@ -2,12 +2,12 @@ function isNumber(value as dynamic) as boolean
     return isInteger(value) or isFloat(value) or isDouble(value) or isLongInteger(value)
 end function
 
-function isList(value as dynamic) as boolean
-    return type(value) = "roList" or type(value) = "roXMLList"
+function isArray(value as dynamic) as boolean
+    return type(value) = "roArray" or type(value) = "roByteArray" or isList(value)
 end function
 
-function isArray(value as dynamic) as boolean
-    return type(value) = "roArray" or type(value) = "roList" or type(value) = "roByteArray" or type(value) = "roXMLList"
+function isList(value as dynamic) as boolean
+    return type(value) = "roList" or type(value) = "roXMLList"
 end function
 
 function isAssociativeArray(value as dynamic) as boolean
@@ -43,7 +43,7 @@ function isDouble(value as dynamic) as boolean
 end function
 
 function isLongInteger(value as dynamic) as boolean
-    return type(value) = "LongInteger" or type(value) = "roLongInteger" ' it is impossible to create roLongInteger object though
+    return type(value) = "LongInteger" or type(value) = "roLongInteger"
 end function
 
 function isValid(value as dynamic) as boolean
