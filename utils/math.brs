@@ -26,18 +26,23 @@ function Math_Atan2(y as float, x as float)
 	if x > 0
 		angle = Atn(y / x)
 	else if y >= 0 and x < 0
-		angle = Atn(y / x) + 3.14159265359
+		angle = Atn(y / x) + Math_PI()
 	else if y < 0 and x < 0
-		angle = Atn(y / x) - 3.14159265359
+		angle = Atn(y / x) - Math_PI()
 	else if y > 0 and x = 0
-		angle = 3.14159265359 / 2
+		angle = Math_PI() / 2
 	else if y < 0 and x = 0
-		angle = (3.14159265359 / 2) * -1
+		angle = (Math_PI() / 2) * -1
 	else
 		angle = 0
 	end if
 
 	return angle
+end function
+
+function Math_Asin(x as float) as float
+	if x < -1.0 or x > 1.0 then return 0.0
+	return 2.0 * atn(x / (1.0 + Sqr(1.0 - x * x)))
 end function
 
 function Math_IsIntegerEven(number as integer) as boolean
