@@ -73,13 +73,12 @@ function ifElse(condition as boolean, ifTrueResult as dynamic, ifFalseResult as 
 	end if
 end function
 
-' Generate random string
 function GetRandomHexString(length as integer) as string
 	hexChars = "0123456789ABCDEF"
 	hexString = ""
 	for i = 1 to length
-		hexString = hexString + hexChars.Mid(Rnd(16) - 1, 1)
-	next
+		hexString += hexChars.Mid(Rnd(16) - 1, 1)
+	end for
 	return hexString
 end function
 
