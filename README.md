@@ -195,23 +195,3 @@ The `new_emptyGameObject` function creates and initializes a new game object wit
   Removes a collider and its associated sprite from the object.
 
 ---
-
-## Usage Example
-```brightscript
-' Create a new game object named "Player"
-playerObject = new_emptyGameObject(game, "Player")
-
-' Set a custom update event
-playerObject.onUpdate = sub(dt)
-    ' Implement your update logic here
-end sub
-
-' Add an image to the player object
-imageConfig = { isAnimation: false, scale: 1.0 }
-playerImage = playerObject.addImage("playerSprite", imageConfig)
-```
-
-### Notes
-- Resource Management: The game object automatically registers itself in the game’s instance registry and manages the loading/unloading of resources.
-- Customization: Use the provided event handlers to implement custom game logic as needed.
-- Error Handling: Basic checks are included to prevent adding duplicate images or labels, with warning messages printed to the console.
