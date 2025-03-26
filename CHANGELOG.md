@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 - Enhance game_defineMainLoopFunction to skip disabled instances during drawing
 - Update region sorting in game_defineResourcesFunctions to use index and assign index to texture items in utils
 - Add FPS averaging functionality to game_defineMainLoopFunction and initialize FPS settings in game_getMainObject
+- Add appInfo object creation in game_getMainObject function
 
 ## [2.2.5] - 11-03-2025
 ### changes

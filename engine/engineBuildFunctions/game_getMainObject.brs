@@ -34,6 +34,7 @@ function game_getMainObject(canvas_width as integer, canvas_height as integer) a
         shouldUseIntegerMovement: false
         empty_bitmap: CreateObject("roBitmap", { width: 1, height: 1, AlphaEnable: false })
         device: CreateObject("roDeviceInfo")
+        appInfo: CreateObject("roAppInfo")
 		url_port: CreateObject("roMessagePort")
         ecp_input_port: CreateObject("roMessagePort")
         ecp_input: CreateObject("roInput")

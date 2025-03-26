@@ -267,20 +267,8 @@ function new_emptyGameObject(game as object, object_name as string) as object
 	' newObject.onDrawEnd = sub(canvas) : end sub
 
 	' newObject.onButton = function(code)
-	' 	' -------Button Code Reference--------
-	' 	' Button  When pressed  When released When Held
-
-	' 	' Back  0  100 1000
-	' 	' Up  2  102 1002
-	' 	' Down  3  103 1003
-	' 	' Left  4  104 1004
-	' 	' Right  5  105 1005
-	' 	' Select  6  106 1006
-	' 	' Instant Replay  7  107 1007
-	' 	' Rewind  8  108 1008
-	' 	' Fast  Forward  9  109 1009
-	' 	' Info  10  110 1010
-	' 	' Play  13  113 1013
+	' 	use buttonCodes("button_name") to get the code for a button
+	' 	return true if the button was handled, false if not
 	' end function
 
 	' newObject.onECPKeyboard = sub(char) : end sub
