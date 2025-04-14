@@ -4,6 +4,9 @@ sub game_defineMainLoopFunction(game as object)
         m.running = true
 
         while m.running
+            m.dt = m.dtTimer.TotalMicroSeconds() / 1000000
+            if m.FakeDT <> invalid then m.dt = m.FakeDT
+            m.dtTimer.Mark()
 
             if m.input_instance <> invalid and m.getInstanceByID(m.input_instance) = invalid
                 m.input_instance = invalid
@@ -11,9 +14,6 @@ sub game_defineMainLoopFunction(game as object)
             m.current_input_instance = m.input_instance
             m.compositor.Draw() ' For some reason this has to be called or the colliders don't remove themselves from the compositor ¯\(°_°)/¯
 
-            m.dt = m.dtTimer.TotalMilliseconds() / 1000
-            if m.FakeDT <> invalid then m.dt = m.FakeDT
-            m.dtTimer.Mark()
             url_msg = m.url_port.GetMessage()
             universal_control_events = []
             screen_msg = m.screen_port.GetMessage()
@@ -221,23 +221,6 @@ sub game_defineMainLoopFunction(game as object)
 
             if m.debugging.draw_safe_zones
                 m.drawSafeZones()
-            end if
-
-            if m.debugging.showFps
-                if m.debugging.fpsAverageFrames.count() < m.debugging.maxFpsAverageFrames
-                    m.debugging.fpsAverageFrames.Push(m.dt)
-                else
-                    m.debugging.fpsAverageFrames[m.debugging.fpsCurrentFrame] = m.dt
-                    m.debugging.fpsCurrentFrame++
-                    if m.debugging.fpsCurrentFrame >= m.debugging.maxFpsAverageFrames then m.debugging.fpsCurrentFrame = 0
-                end if
-                totalFps = 0
-                for each frame in m.debugging.fpsAverageFrames
-                    totalFps = totalFps + frame
-                end for
-                averageFps = totalFps / m.debugging.fpsAverageFrames.count()
-                text = "FPS: " + int(1 / averageFps).ToStr()
-                m.screen.DrawText(text, 30, 30, &hffffffff, m.getDefaultFont())
             end if
 
             m.screen.SwapBuffers()

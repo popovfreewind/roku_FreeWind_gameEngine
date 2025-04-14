@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [2.4.7] - 31-03-2025
+### changes
+ - Remove FPS debugging code from main loop and main object definition
+
 ## [2.3.6] - 12-03-2025
 ### changes
 - update label type form text to label

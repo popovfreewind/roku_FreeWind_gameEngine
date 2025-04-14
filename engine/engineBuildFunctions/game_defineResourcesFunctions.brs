@@ -114,6 +114,14 @@ sub game_defineResourcesFunctions(game as object)
 		m.staticBitmaps[name] = bitmap
 	end function
 
+	game.getStaticBitmap = function(name as string) as object
+		if m.staticBitmaps[name] = invalid
+			print_error("Static bitmap not found - " + name)
+			return invalid
+		end if
+		return m.staticBitmaps[name]
+	end function
+
 	game.unloadStaticBitmap = sub(name as string)
 		'print_info("unload static bitmap - " + name)
 		m.staticBitmaps.delete(name)
@@ -122,6 +130,14 @@ sub game_defineResourcesFunctions(game as object)
 	game.loadStaticAtlas = sub(name as string, path as dynamic)
 		m.staticAtlases[name] = textureParker_getRegionsConfigFromAtlasArray(m.getAtlasFromFs(path))
 	end sub
+
+	game.getStaticAtlas = function(name as string) as object
+		if m.staticAtlases[name] = invalid
+			print_error("Static atlas not found - " + name)
+			return invalid
+		end if
+		return m.staticAtlases[name]
+	end function
 
 	game.unloadStaticAtlas = sub(name as string)
 		m.staticAtlases.delete(name)
